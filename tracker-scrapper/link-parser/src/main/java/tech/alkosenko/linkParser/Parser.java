@@ -6,6 +6,18 @@ import tech.alkosenko.linkParser.services.GitHubParser;
 import tech.alkosenko.linkParser.services.StackOverflowParser;
 import tech.alkosenko.linkParser.services.data.ServiceData;
 
+/*
+ * To add parser for new service, you have to:
+ *
+ * - Add a new name to the enumeration ServiceId in the package `services.data`.
+ * - Write the parser in the package `services`: `SomeSiteParser.java`,
+ *   which extends `AbstractChainParser` and overrides `getServiceData`.
+ * - Add it to the chain in the Parser.java to the static section.
+ * - (Optional) Write `record` for the service in the package `services.records`.
+ * - (Optional) Write a transformation of ServiceData into SomeSiteServiceData of
+ *   the site in services.utils.TransformerServiceDataToRecord.
+ * */
+
 public class Parser {
     private static final AbstractChainParser parserChain;
 
