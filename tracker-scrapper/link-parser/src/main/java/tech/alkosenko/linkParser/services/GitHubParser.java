@@ -1,16 +1,19 @@
 package tech.alkosenko.linkParser.services;
 
-import tech.alkosenko.linkParser.services.objects.ParserChain;
-import tech.alkosenko.linkParser.services.objects.ServiceData;
-import tech.alkosenko.linkParser.services.objects.Id;
-
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import tech.alkosenko.linkParser.AbstractChainParser;
+import tech.alkosenko.linkParser.services.data.ServiceData;
+import tech.alkosenko.linkParser.services.data.ServiceId;
 
-public class GitHub extends ParserChain {
+public class GitHubParser extends AbstractChainParser {
+    public GitHubParser(AbstractChainParser next) {
+        super(next);
+    }
+
     @Override
-    protected ServiceData getServiceData(URL url) {
+    public ServiceData getServiceData(URL url) {
         if (!url.getHost().equals("github.com")) {
             return null;
         }
@@ -22,9 +25,9 @@ public class GitHub extends ParserChain {
         }
 
         Map<String, String> serviceData = new HashMap<>();
-        serviceData.put("user", pathParts[1]);
+        serviceData.put("id", pathParts[1]);
         serviceData.put("repository", pathParts[2]);
 
-        return new ServiceData(Id.GITHUB, serviceData);
+        return new ServiceData(ServiceId.GITHUB, serviceData);
     }
 }

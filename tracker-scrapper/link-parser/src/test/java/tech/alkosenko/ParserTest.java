@@ -1,24 +1,26 @@
 package tech.alkosenko;
 
 import static org.junit.Assert.*;
+import static tech.alkosenko.linkParser.services.utils.TransformerServiceDataToRecord.transformServiceToGitHub;
+import static tech.alkosenko.linkParser.services.utils.TransformerServiceDataToRecord.transformServiceToStackOverflow;
 
 import org.junit.Test;
 import tech.alkosenko.linkParser.Parser;
-import tech.alkosenko.linkParser.services.objects.ServiceData;
-import tech.alkosenko.linkParser.services.objects.Id;
+import tech.alkosenko.linkParser.services.data.ServiceData;
+import tech.alkosenko.linkParser.services.records.GitHubServiceData;
 
 public class ParserTest {
     public static Parser parser = new Parser();
     public boolean gitHubEquals(
-            ServiceData serviceData, String user, String repository) {
-        return serviceData.id == Id.GITHUB
-                && serviceData.serviceData.get("user").equals(user)
-                && serviceData.serviceData.get("repository").equals(repository);
+            ServiceData serviceData, String userName, String repositoryName) {
+        GitHubServiceData gitHubServiceData =
+                transformServiceToGitHub(serviceData);
+        return gitHubServiceData.userName().equals(userName)
+                && gitHubServiceData.repositoryName().equals(repositoryName);
     }
 
     public boolean stackOverflowEquals(ServiceData serviceData, String id) {
-        return serviceData.id == Id.STACKOVERFLOW
-                && serviceData.serviceData.get("id").equals(id);
+        return transformServiceToStackOverflow(serviceData).id().equals(id);
     }
 
     @Test

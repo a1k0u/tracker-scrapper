@@ -1,17 +1,19 @@
 package tech.alkosenko.linkParser.services;
 
-import tech.alkosenko.linkParser.services.objects.ParserChain;
-import tech.alkosenko.linkParser.services.objects.ServiceData;
-import tech.alkosenko.linkParser.services.objects.Id;
-
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import tech.alkosenko.linkParser.AbstractChainParser;
+import tech.alkosenko.linkParser.services.data.ServiceData;
+import tech.alkosenko.linkParser.services.data.ServiceId;
 
-public class StackOverflow extends ParserChain {
+public class StackOverflowParser extends AbstractChainParser {
+    public StackOverflowParser(AbstractChainParser next) {
+        super(next);
+    }
 
     @Override
-    protected ServiceData getServiceData(URL url) {
+    public ServiceData getServiceData(URL url) {
         if (!url.getHost().equals("stackoverflow.com")) {
             return null;
         }
@@ -25,6 +27,6 @@ public class StackOverflow extends ParserChain {
         Map<String, String> serviceData = new HashMap<>();
         serviceData.put("id", pathParts[2]);
 
-        return new ServiceData(Id.STACKOVERFLOW, serviceData);
+        return new ServiceData(ServiceId.STACKOVERFLOW, serviceData);
     }
 }
