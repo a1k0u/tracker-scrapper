@@ -17,6 +17,7 @@ public class GitHubParser extends AbstractChainParser {
             return null;
         }
 
+        System.out.println(url.getPath());
         String[] pathParts = url.getPath().split("/");
 
         if (pathParts.length < 3) {

@@ -6,6 +6,15 @@ import tech.alkosenko.linkParser.services.GitHubParser;
 import tech.alkosenko.linkParser.services.StackOverflowParser;
 import tech.alkosenko.linkParser.services.records.ParsingResult;
 
+/*
+* New parser instruction.
+*
+* - Release parser in package `services`: `SomeSiteParser.java`
+* - Release record for service data in `services.records`.
+* - Than this record have to permit from ParsingResult sealed interface.
+* - Add parser in the chain.
+* */
+
 public class Parser {
     private static final AbstractChainParser parserChain;
 
@@ -22,9 +31,6 @@ public class Parser {
         /*
          * If some service is found in link, serviceData will return.
          * Otherwise, null.
-         *
-         * Service data can be transformed appropriate record.
-         * ^ .services.util.TransformerServiceDataToRecord
          * */
 
         try {
