@@ -4,19 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import tech.alkosenko.linkParser.services.GitHubParser;
 import tech.alkosenko.linkParser.services.StackOverflowParser;
-import tech.alkosenko.linkParser.services.data.ServiceData;
-
-/*
- * To add parser for new service, you have to:
- *
- * - Add a new name to the enumeration ServiceId in the package `services.data`.
- * - Write the parser in the package `services`: `SomeSiteParser.java`,
- *   which extends `AbstractChainParser` and overrides `getServiceData`.
- * - Add it to the chain in the Parser.java to the static section.
- * - (Optional) Write `record` for the service in the package `services.records`.
- * - (Optional) Write a transformation of ServiceData into SomeSiteServiceData of
- *   the site in services.utils.TransformerServiceDataToRecord.
- * */
+import tech.alkosenko.linkParser.services.records.ParsingResult;
 
 public class Parser {
     private static final AbstractChainParser parserChain;
@@ -30,7 +18,7 @@ public class Parser {
         parserChain = new GitHubParser(new StackOverflowParser(null));
     }
 
-    public static ServiceData parse(String stringifiedUrl) {
+    public static ParsingResult parse(String stringifiedUrl) {
         /*
          * If some service is found in link, serviceData will return.
          * Otherwise, null.

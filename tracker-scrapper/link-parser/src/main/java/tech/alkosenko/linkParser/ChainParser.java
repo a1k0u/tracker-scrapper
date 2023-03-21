@@ -1,9 +1,9 @@
 package tech.alkosenko.linkParser;
 
 import java.net.URL;
-import tech.alkosenko.linkParser.services.data.ServiceData;
+import tech.alkosenko.linkParser.services.records.ParsingResult;
 
 public interface ChainParser {
-    ServiceData parseInChain(URL url);
-    ServiceData getServiceData(URL url);
+    ParsingResult parseInChain(URL url);
+    ParsingResult getServiceData(URL url);
 }

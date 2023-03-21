@@ -1,6 +1,6 @@
 package tech.alkosenko.linkParser;
 import java.net.URL;
-import tech.alkosenko.linkParser.services.data.ServiceData;
+import tech.alkosenko.linkParser.services.records.ParsingResult;
 
 public abstract class AbstractChainParser implements ChainParser {
     private final AbstractChainParser next;
@@ -9,8 +9,8 @@ public abstract class AbstractChainParser implements ChainParser {
         this.next = next;
     }
 
-    public ServiceData parseInChain(URL url) {
-        ServiceData result = getServiceData(url);
+    public ParsingResult parseInChain(URL url) {
+        ParsingResult result = getServiceData(url);
 
         if (result != null) {
             return result;
