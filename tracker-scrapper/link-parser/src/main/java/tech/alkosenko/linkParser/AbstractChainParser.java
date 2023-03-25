@@ -3,9 +3,9 @@ import java.net.URL;
 import tech.alkosenko.linkParser.services.records.ParsingResult;
 
 public abstract class AbstractChainParser implements ChainParser {
-    private final AbstractChainParser next;
+    private final ChainParser next;
 
-    public AbstractChainParser(AbstractChainParser next) {
+    public AbstractChainParser(ChainParser next) {
         this.next = next;
     }
 
