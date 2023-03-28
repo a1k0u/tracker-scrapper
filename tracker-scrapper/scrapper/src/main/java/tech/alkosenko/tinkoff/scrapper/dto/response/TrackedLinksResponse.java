@@ -1,6 +1,6 @@
 package tech.alkosenko.tinkoff.scrapper.dto.response;
 
-import java.util.List;
+import java.util.ArrayList;
 
 class Link {
     private Integer id;
@@ -8,6 +8,6 @@ class Link {
 }
 
 public class TrackedLinksResponse {
-    private List<Link> links;
+    private ArrayList<Link> links;
     private Integer id;
 }

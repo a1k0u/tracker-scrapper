@@ -7,7 +7,7 @@ import tech.alkosenko.tinkoff.scrapper.dto.response.TrackedLinksResponse;
 
 @RestController
 public class LinkController {
-    @PostMapping("/links")
+    @GetMapping("/links")
     public TrackedLinksResponse getAllTrackedLinks(@RequestParam("tg-chat-id") Integer telegramChatId) {
         System.out.println(telegramChatId);
         return new TrackedLinksResponse();
