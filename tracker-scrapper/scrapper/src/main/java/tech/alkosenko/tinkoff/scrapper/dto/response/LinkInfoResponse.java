@@ -1,6 +1,6 @@
 package tech.alkosenko.tinkoff.scrapper.dto.response;
 
-public class LinkResponse {
+public class LinkInfoResponse {
     private Integer id;
     private String url;
 }

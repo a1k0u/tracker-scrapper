@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class TelegramChatController {
     @PostMapping("/tg-chat/{id}")
     public ResponseEntity<HttpStatus> registerTelegramChat(@PathVariable Integer id) {
-        System.out.println(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

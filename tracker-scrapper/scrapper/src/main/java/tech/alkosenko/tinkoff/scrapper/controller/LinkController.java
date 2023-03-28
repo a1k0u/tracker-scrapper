@@ -1,33 +1,29 @@
 package tech.alkosenko.tinkoff.scrapper.controller;
 
 import org.springframework.web.bind.annotation.*;
-import tech.alkosenko.tinkoff.scrapper.dto.request.LinkRequest;
-import tech.alkosenko.tinkoff.scrapper.dto.response.LinkResponse;
-import tech.alkosenko.tinkoff.scrapper.dto.response.TrackedLinksResponse;
+import tech.alkosenko.tinkoff.scrapper.dto.request.LinkInfoRequest;
+import tech.alkosenko.tinkoff.scrapper.dto.response.LinkInfoResponse;
+import tech.alkosenko.tinkoff.scrapper.dto.response.ListOfTrackedLinksResponse;
 
 @RestController
 public class LinkController {
     @GetMapping("/links")
-    public TrackedLinksResponse getAllTrackedLinks(@RequestParam("tg-chat-id") Integer telegramChatId) {
-        System.out.println(telegramChatId);
-        return new TrackedLinksResponse();
+    public ListOfTrackedLinksResponse getAllTrackedLinks(
+            @RequestParam("tg-chat-id") Integer telegramChatId) {
+        return new ListOfTrackedLinksResponse();
     }
 
     @PostMapping("/links")
-    public LinkResponse addNewTrackedLink(
+    public LinkInfoResponse addNewTrackedLink(
             @RequestParam("tg-chat-id") Integer telegramChatId,
-            @RequestBody LinkRequest linkRequest) {
-        System.out.println(telegramChatId);
-        System.out.println(linkRequest);
-        return new LinkResponse();
+            @RequestBody LinkInfoRequest linkInfoRequest) {
+        return new LinkInfoResponse();
     }
 
     @DeleteMapping("/links")
-    public LinkResponse deleteTrackedLink(
+    public LinkInfoResponse deleteTrackedLink(
             @RequestParam("tg-chat-id") Integer telegramChatId,
-            @RequestBody LinkRequest linkRequest) {
-        System.out.println(telegramChatId);
-        System.out.println(linkRequest);
-        return new LinkResponse();
+            @RequestBody LinkInfoRequest linkInfoRequest) {
+        return new LinkInfoResponse();
     }
 }

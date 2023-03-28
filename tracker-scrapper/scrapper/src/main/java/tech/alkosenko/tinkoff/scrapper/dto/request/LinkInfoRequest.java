@@ -1,5 +1,5 @@
 package tech.alkosenko.tinkoff.scrapper.dto.request;
 
-public class LinkRequest {
+public class LinkInfoRequest {
     private String link;
 }
