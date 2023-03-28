@@ -1,15 +1,14 @@
-package tech.alkosenko.tinkoff.scrapper.service;
+package tech.alkosenko.tinkoff.scrapper.client;
 
 import org.springframework.web.reactive.function.client.WebClient;
-import tech.alkosenko.tinkoff.scrapper.client.GitHubClient;
 import tech.alkosenko.tinkoff.scrapper.dto.response.GitHubRepoUptResponse;
 
-public class GitHubService implements GitHubClient {
+public class GitHubClientImplementation implements GitHubClient {
     private final WebClient webClient;
 
     private final String baseUrl;
 
-    public GitHubService(WebClient webClient, String baseUrl) {
+    public GitHubClientImplementation(WebClient webClient, String baseUrl) {
         this.baseUrl = baseUrl;
         this.webClient = webClient;
     }
