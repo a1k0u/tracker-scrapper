@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import liquibase.Contexts;
+import liquibase.LabelExpression;
 import liquibase.Liquibase;
 import liquibase.database.Database;
 import liquibase.database.core.PostgresDatabase;
@@ -30,7 +33,7 @@ public class IntegrationEnvironment {
                     new DirectoryResourceAccessor(
                             new File("../migrations").toPath().toAbsolutePath()),
                     postgres);
-            liquibase.update();
+            liquibase.update(new Contexts(), new LabelExpression());
         } catch (SQLException | FileNotFoundException | LiquibaseException e) {
             throw new RuntimeException(e);
         }

@@ -23,6 +23,7 @@ public class DBMigrationTest extends IntegrationEnvironment {
             }
 
             Assertions.assertTrue(tableNames.containsAll(List.of(tables)));
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
