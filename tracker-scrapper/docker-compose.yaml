@@ -1,0 +1,37 @@
+services:
+  postgresql:
+    image: postgres:15
+    ports:
+      - 8888:5432
+    environment:
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "scrapper"
+    networks:
+      - backend
+    volumes:
+      - psql_volume:/var/lib/postgresql/data
+    
+  liquibase-migrations:
+   image: liquibase/liquibase:4.18
+   depends_on:
+       - postgresql
+   command:
+       - --hub-mode=off
+       - --changelog-file=master.xml
+       - --driver=org.postgresql.Driver
+       - --url=jdbc:postgresql://postgresql:5432/scrapper
+       - --username=user
+       - --password=password
+       - update
+   volumes:
+       - ./migrations:/liquibase/changelog
+   networks:
+       - backend
+
+volumes:
+  psql_volume:
+
+networks:
+  backend:
+    driver: bridge
